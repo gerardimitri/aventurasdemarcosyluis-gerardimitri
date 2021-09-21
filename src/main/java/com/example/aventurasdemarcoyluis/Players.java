@@ -1,5 +1,7 @@
 package com.example.aventurasdemarcoyluis;
 
+import com.example.aventurasdemarcoyluis.Items.Items;
+
 import java.util.List;
 
 /**
@@ -14,7 +16,7 @@ public class Players {
     private int hp;
     private int fp;
     private int lvl=1;
-    public List<Item> armamento;
+    public List<Items> armamento;
 
     /**
      * Creates a new player
@@ -34,10 +36,31 @@ public class Players {
     }
 
 
-    public void addAItem(Item a){
+    public void addAItem(Items a){
         armamento.add(a);
     }
 
+
+    public void setHP(int value) {
+        if( value < 0) {
+            setHP(0);
+        }
+        else {
+            this.hp = value;
+        }
+    }
+
+
+    public void useItem(Items anItem){
+
+    }
+
+    public boolean checkKO(){
+        if(this.hp <0){
+            return true;
+        }
+        else return false;
+    }
 
     public void setHP(int value) {
         if( value < 0) {
@@ -76,19 +99,6 @@ public class Players {
         int newHp = anEnemy.getHp() - (int) damage;
         anEnemy.setHp(newHp);
     }
-
-    public void useItem(Items anItem){
-
-    }
-
-    public boolean checkKO(){
-        if(this.hp <0){
-            return true;
-        }
-        else return false;
-    }
-
-
 
 
 

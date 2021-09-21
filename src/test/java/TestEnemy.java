@@ -25,9 +25,4 @@ public class TestEnemy {
         assertEquals(EnemyType.GOOMBA,testGoomba.getType());
     }
 
-    @Test
-    public void AttackTest(){
-        //assertEquals(AttackType.SALTO,testBoo.getType());
-        assertEquals(EnemyType.GOOMBA,testGoomba.getType());
-    }
 }

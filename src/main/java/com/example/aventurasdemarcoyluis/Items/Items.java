@@ -1,4 +1,4 @@
-package com.example.aventurasdemarcoyluis;
+package com.example.aventurasdemarcoyluis.Items;
 
 /**
  * Enumerator that represents the items explain in the project

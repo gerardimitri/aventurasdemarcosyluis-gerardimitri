@@ -5,4 +5,6 @@ module com.example.aventurasdemarcoyluis {
 
     opens com.example.aventurasdemarcoyluis to javafx.fxml;
     exports com.example.aventurasdemarcoyluis;
+    exports com.example.aventurasdemarcoyluis.Items;
+    opens com.example.aventurasdemarcoyluis.Items to javafx.fxml;
 }
