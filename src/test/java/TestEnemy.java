@@ -1,4 +1,5 @@
 
+import com.example.aventurasdemarcoyluis.AttackType;
 import com.example.aventurasdemarcoyluis.Enemies;
 import com.example.aventurasdemarcoyluis.EnemyType;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,6 +22,12 @@ public class TestEnemy {
     @Test
     public void constructorTest(){
         assertEquals(EnemyType.BOO,testBoo.getType());
+        assertEquals(EnemyType.GOOMBA,testGoomba.getType());
+    }
+
+    @Test
+    public void AttackTest(){
+        //assertEquals(AttackType.SALTO,testBoo.getType());
         assertEquals(EnemyType.GOOMBA,testGoomba.getType());
     }
 }

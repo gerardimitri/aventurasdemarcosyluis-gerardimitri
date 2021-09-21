@@ -6,5 +6,7 @@ package com.example.aventurasdemarcoyluis;
  *
  */
 public enum AttackType {
-    MARTILLO,SALTO
+    MARTILLO,
+    SALTO;
+
 }
