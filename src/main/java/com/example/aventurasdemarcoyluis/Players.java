@@ -62,15 +62,6 @@ public class Players {
         else return false;
     }
 
-    public void setHP(int value) {
-        if( value < 0) {
-            setHP(0);
-        }
-        else {
-            this.hp = value;
-        }
-    }
-
     public void attackEnemy(Enemies anEnemy,AttackType anAttack){
         double k = 0;
         double damage = k*this.atk*(this.lvl / anEnemy.getDef());
