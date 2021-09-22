@@ -1,6 +1,4 @@
-package com.example.aventurasdemarcoyluis;
-
-import java.util.Objects;
+package com.example.aventurasdemarcoyluis.Enemies;
 
 public class Enemies {
     private int atk;

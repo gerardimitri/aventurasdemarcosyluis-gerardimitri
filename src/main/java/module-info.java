@@ -7,4 +7,8 @@ module com.example.aventurasdemarcoyluis {
     exports com.example.aventurasdemarcoyluis;
     exports com.example.aventurasdemarcoyluis.Items;
     opens com.example.aventurasdemarcoyluis.Items to javafx.fxml;
+    exports com.example.aventurasdemarcoyluis.Players;
+    opens com.example.aventurasdemarcoyluis.Players to javafx.fxml;
+    exports com.example.aventurasdemarcoyluis.Enemies;
+    opens com.example.aventurasdemarcoyluis.Enemies to javafx.fxml;
 }

@@ -1,15 +1,13 @@
 package com.example.aventurasdemarcoyluis.Items;
 
-import com.example.aventurasdemarcoyluis.AbstractItem;
+import com.example.aventurasdemarcoyluis.Players.Players;
 
-public class ItemRedMushroom extends AbstractItem {
-    public ItemRedMushroom(int QUANTITY){
-        super(QUANTITY);
+public class ItemRedMushroom extends AbstractItems {
+    public ItemRedMushroom(){
     }
 
-    public void useItem(){
-        if(this.quantity>0){
-            setQuantity(this.quantity-1);
-        }
+    @Override
+    public void useItem(Players aPlayer){
+            aPlayer.setHP((int)(aPlayer.getHP()+aPlayer.getMaxHP()*0.1));
     }
 }

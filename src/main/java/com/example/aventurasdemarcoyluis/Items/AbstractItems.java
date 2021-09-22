@@ -2,11 +2,15 @@ package com.example.aventurasdemarcoyluis.Items;
 
 import com.example.aventurasdemarcoyluis.Players.Players;
 
-public class ItemStar extends AbstractItems {
-    public ItemStar(){
+public class AbstractItems implements Items{
+
+    public AbstractItems(){
     }
 
     @Override
-    public void useItem(Players aPlayer){
+    public void useItem(Players aPlayer) {
+
     }
 }
+
+

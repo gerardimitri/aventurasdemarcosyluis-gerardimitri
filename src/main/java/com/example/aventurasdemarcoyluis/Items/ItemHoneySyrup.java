@@ -1,15 +1,14 @@
 package com.example.aventurasdemarcoyluis.Items;
 
-import com.example.aventurasdemarcoyluis.AbstractItem;
+import com.example.aventurasdemarcoyluis.Players.Players;
 
-public class ItemHoneySyrup extends AbstractItem {
-    public ItemHoneySyrup(int QUANTITY){
-        super(QUANTITY);
+public class ItemHoneySyrup extends AbstractItems {
+    public ItemHoneySyrup(){
     }
 
-    public void useItem(){
-        if(this.quantity>0){
-            setQuantity(this.quantity-1);
+    @Override
+    public void useItem(Players aPlayer){
+            aPlayer.setFP(aPlayer.getFP()+3);
         }
-    }
+
 }

@@ -1,9 +1,7 @@
 
-import com.example.aventurasdemarcoyluis.AttackType;
-import com.example.aventurasdemarcoyluis.Enemies;
-import com.example.aventurasdemarcoyluis.EnemyType;
+import com.example.aventurasdemarcoyluis.Enemies.Enemies;
+import com.example.aventurasdemarcoyluis.Enemies.EnemyType;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

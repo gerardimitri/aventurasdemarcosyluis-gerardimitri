@@ -1,9 +1,8 @@
 package com.example.aventurasdemarcoyluis.Items;
 
-/**
- * Enumerator that represents the items explain in the project
- */
-public enum Items {
-    STAR, RedMushroom, HoneySyrup
-}
+import com.example.aventurasdemarcoyluis.Players.Players;
 
+public interface Items {
+
+    public void useItem(Players aPlayer);
+}

@@ -1,4 +1,4 @@
-package com.example.aventurasdemarcoyluis;
+package com.example.aventurasdemarcoyluis.Players;
 
 /**
  * Enumerator that represents de type of attack that a
