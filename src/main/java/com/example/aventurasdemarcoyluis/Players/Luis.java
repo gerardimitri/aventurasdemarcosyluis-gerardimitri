@@ -17,10 +17,17 @@ public class Luis extends Players{
         super(ATK, DEF, HP, FP, LVL);
     }
 
+    /**
+     * Function to attack an enemy
+     * @param anEnemy the enemy attacked
+     * @param anAttack the attack used
+     */
+
+    /*Nota: panxito me dijo que está mal usar tantos if, pero para tratar con
+     eso se deben utilizar tecnicas que se verán más adelante en el curso*/
     @Override
     public void attackEnemy(Enemies anEnemy, AttackType anAttack){
         double k = 0;
-        double damage = k*super.atk*(super.lvl / anEnemy.getDef());
         int random = (int) Math.floor(Math.random()*(4-1+1)+1);
 
         //Here we check if the Player can Attack
@@ -33,7 +40,7 @@ public class Luis extends Players{
             super.fp-=1;
             if(anEnemy.getType()== EnemyType.SPINY){
                 k=0;
-                setHP((int)(super.hp * 0.85));
+                setHP((int)(super.hp * 0.95));
             }
         }
         if (anAttack == AttackType.MARTILLO){
@@ -45,6 +52,7 @@ public class Luis extends Players{
                 k=0;
             }
         }
+        double damage = k*super.atk*((double) (super.lvl / anEnemy.getDef()));
         int newHp = anEnemy.getHp() - (int) damage;
         anEnemy.setHp(newHp);
     }

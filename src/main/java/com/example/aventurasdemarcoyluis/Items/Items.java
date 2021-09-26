@@ -4,5 +4,9 @@ import com.example.aventurasdemarcoyluis.Players.Players;
 
 public interface Items {
 
-    public void useItem(Players aPlayer);
+    /**
+     * Uses an Item
+     * @param aPlayer represents the player that uses the item
+     */
+    void useItem(Players aPlayer);
 }

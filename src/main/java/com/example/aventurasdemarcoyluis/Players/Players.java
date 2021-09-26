@@ -1,7 +1,6 @@
 package com.example.aventurasdemarcoyluis.Players;
 
 import com.example.aventurasdemarcoyluis.Enemies.Enemies;
-import com.example.aventurasdemarcoyluis.Enemies.EnemyType;
 import com.example.aventurasdemarcoyluis.Items.Items;
 
 import java.util.HashMap;
@@ -12,15 +11,15 @@ import java.util.HashMap;
  *  @author Gerardo Trincado
  *  github: gerardimitri
  */
-public abstract class Players {
+public class Players {
     protected int atk;
     protected int def;
     protected int hp;
     protected int fp;
-    protected int lvl=1;
+    protected int lvl;
     protected int maxhp;
     protected int maxfp;
-    public HashMap<Items, Integer> armamento = new HashMap<Items, Integer>();
+    public HashMap<Items, Integer> armamento = new HashMap<>();
 
     /**
      * Creates a new player
@@ -42,95 +41,138 @@ public abstract class Players {
 
     }
 
-
-    public void addItem(Items a){
-        if(armamento.containsKey(a)){
-            armamento.replace(a,armamento.get(a)+1);
-        }
-        else{
-            armamento.put(a,1);
-        }
+    /**
+     * Adds an item to the armament bag
+     * @param a represents the item
+     * @param b represents the quantity
+     */
+    public void addItem(Items a, int b){
+            if (armamento.containsKey(a)) {
+                armamento.replace(a, armamento.get(a) + b);
+            } else {
+                armamento.put(a, b);
+            }
     }
 
-    protected void useItem(Items anItem){
-        if(armamento.get(anItem)>0){
+    /**
+     * Uses an Item that's in bag
+     * @param anItem represents the item to use
+     */
+    public void useItem(Items anItem){
+        if(armamento.containsKey(anItem) && armamento.get(anItem)>0){
             anItem.useItem(this);
+            this.armamento.replace(anItem, armamento.get(anItem)-1);
         }
     }
 
+    /**
+     * Gets the HP
+     * @return the HP
+     */
     public int getHP(){
         return this.hp;
     }
 
+    /**
+     * Gets the maxHP
+     * @return the maxHP
+     */
     public int getMaxHP(){
         return this.maxhp;
     }
 
+    /**
+     * Set the current HP to a value
+     * @param value represents the HP to set
+     */
     public void setHP(int value) {
         if( value < 0) {
             this.hp=0;
         }
-        else if( value > this.maxhp) {
-            this.hp=this.maxhp;
-        }
-        else {
-            this.hp = value;
-        }
+        else this.hp = Math.min(value, this.maxhp);
     }
 
+    /**
+     * Gets de FP
+     * @return the FP
+     */
     public int getFP(){
         return this.fp;
     }
 
+    /**
+     * Sets the FP
+     * @param value represents the value to set the FP
+     */
     public void setFP(int value) {
         if( value < 0) {
             this.fp=0;
         }
-        else {
-            this.fp = value;
-        }
+        else this.fp = Math.min(value, this.maxfp);
     }
 
+    /**
+     * Gets the Atk
+     * @return the Atk
+     */
+    public int getAtk() {
+        return atk;
+    }
 
+    /**
+     * Sets the atk
+     * @param atk represents the new atk
+     */
+    public void setAtk(int atk) {
+        this.atk = atk;
+    }
+
+    /**
+     * Gets the defense
+     * @return the defense
+     */
+    public int getDef() {
+        return def;
+    }
+
+    /**
+     * Sets the Defense
+     * @param def represents the new defense
+     */
+    public void setDef(int def) {
+        this.def = def;
+    }
+
+    /**
+     * gets the Lvl
+     * @return the lvl.
+     */
+    public int getLvl() {
+        return lvl;
+    }
+
+    /**
+     * Sets the lvl.
+     * @param lvl represents the new lvl.
+     */
+    public void setLvl(int lvl) {
+        this.lvl = lvl;
+    }
+
+    /**
+     * Checks if the player is Knocked Out
+     * @return boolean, true if the Player is KO'd, false if not
+     */
     public boolean checkKO(){
-        if(this.hp <0){
-            return true;
-        }
-        else return false;
+        return this.hp == 0;
     }
 
-    public void attackEnemy(Enemies anEnemy, AttackType anAttack){
-        double k = 0;
-        double damage = k*this.atk*(this.lvl / anEnemy.getDef());
-        int random = (int) Math.floor(Math.random()*(4-1+1)+1);
-
-        //Here we check if the Player can Attack
-        if (this.fp == 0 || checkKO()){
-            return;
-        }
-        if (anAttack == AttackType.SALTO){
-            k=1;
-            this.fp-=1;
-            if(anEnemy.getType()== EnemyType.SPINY){
-                k=0;
-                setHP((int)(this.hp * 0.85));
-            }
-        }
-        if (anAttack == AttackType.MARTILLO){
-            this.fp-=2;
-            if (random != 4){
-                k=1.5;
-            }
-            if(anEnemy.getType()== EnemyType.BOO){
-                k=0;
-            }
-        }
-        int newHp = anEnemy.getHp() - (int) damage;
-        anEnemy.setHp(newHp);
+    /**
+     * Function to attack an enemy
+     * @param anEnemy the enemy attacked
+     * @param anAttack the attack used
+     */
+    protected void attackEnemy(Enemies anEnemy, AttackType anAttack){
     }
-
-
-
-
 
 }

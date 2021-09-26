@@ -7,6 +7,6 @@ package com.example.aventurasdemarcoyluis.Players;
  */
 public enum AttackType {
     MARTILLO,
-    SALTO;
+    SALTO
 
 }
