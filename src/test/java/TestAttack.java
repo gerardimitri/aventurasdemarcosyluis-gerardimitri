@@ -13,6 +13,7 @@ public class TestAttack {
     private Enemies testBoo;
     private Enemies testSpiny;
 
+
     @BeforeEach
     public void setUp(){
         testMarco=new Marco(17,16,100,15,1);
@@ -24,6 +25,22 @@ public class TestAttack {
 
     @Test
     public void attackTest(){
+        testLuis.setFP(0);
+        testLuis.attackEnemy(testGoomba, AttackType.MARTILLO);
+        assertEquals(15, testGoomba.getHp());
+
+        testLuis.setFP(testLuis.getMaxFP());
+
+        testMarco.attackEnemy(testBoo, AttackType.SALTO);
+        assertEquals(3, testBoo.getHp());
+
+        testMarco.setHP(0);
+
+        testMarco.attackEnemy(testGoomba, AttackType.SALTO);
+        assertEquals(15, testGoomba.getHp());
+
+        testMarco.setHP(testMarco.getMaxHP());
+
         testLuis.attackEnemy(testGoomba, AttackType.SALTO);
         testLuis.attackEnemy(testGoomba, AttackType.MARTILLO);
         testMarco.attackEnemy(testBoo, AttackType.MARTILLO);
@@ -33,7 +50,7 @@ public class TestAttack {
         assertEquals(3, testBoo.getHp());
         assertEquals(12, testLuis.getFP());
 
-        testLuis.setFP(0);
-        testLuis.attackEnemy(testGoomba, AttackType.MARTILLO);
+
+
     }
 }

@@ -93,11 +93,19 @@ public class Players {
     }
 
     /**
-     * Gets de FP
+     * Gets the FP
      * @return the FP
      */
     public int getFP(){
         return this.fp;
+    }
+
+    /**
+     * Gets the maxFP
+     * @return the maxFP
+     */
+    public int getMaxFP(){
+        return this.maxfp;
     }
 
     /**

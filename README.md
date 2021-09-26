@@ -43,5 +43,8 @@ Luego, Adicionalmente podemos atacar a un enemigo con la función attackEnemy(En
 En cuanto a los enemigos, estos también cuentas con sus propios atributos donde la excepción es el armamento, ya que estos no cuentan con uno y en vez de eso, estos tienen un tipo.
 Para acceder a los elementos de los enemigos se utilizan los mismos metodos que para los Jugadores en tanto sus getter como setter.
 
+Nota:
+Algunos test tienen 85% debido al ataque, sin el ataque tienen coverage del 100%
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
