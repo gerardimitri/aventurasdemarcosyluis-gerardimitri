@@ -31,7 +31,7 @@ public class Marco extends Players{
         int random = (int) Math.floor(Math.random()*(4-1+1)+1);
 
         //Here we check if the Player can Attack
-        if (super.fp == 0 || checkKO()){
+        if (super.getFP() == 0 || checkKO()){
             return;
         }
 
@@ -41,14 +41,14 @@ public class Marco extends Players{
 
         if (anAttack == AttackType.SALTO){
             k=1;
-            super.fp-=1;
+            super.setFP(super.getFP()-1);
             if(anEnemy.getType()== EnemyType.SPINY){
                 k=0;
-                setHP((int)(super.hp * 0.95));
+                setHP((int)(super.getMaxHP() * 0.95));
             }
         }
         if (anAttack == AttackType.MARTILLO){
-            super.fp-=2;
+            super.setFP(super.getFP()-2);
             if (random != 4){
                 k=1.5;
             }
@@ -56,7 +56,7 @@ public class Marco extends Players{
                 k=0;
             }
         }
-        double damage = k*super.atk*((double) (super.lvl / anEnemy.getDef()));
+        double damage = k*super.getAtk()*((double) (super.getLvl() / anEnemy.getDef()));
         int newHp = anEnemy.getHp() - (int) damage;
         anEnemy.setHp(newHp);
     }

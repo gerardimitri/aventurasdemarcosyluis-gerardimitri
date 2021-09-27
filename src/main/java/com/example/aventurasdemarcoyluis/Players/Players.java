@@ -12,13 +12,13 @@ import java.util.HashMap;
  *  github: gerardimitri
  */
 public class Players {
-    protected int atk;
-    protected int def;
-    protected int hp;
-    protected int fp;
-    protected int lvl;
-    protected int maxhp;
-    protected int maxfp;
+    private int atk;
+    private int def;
+    private int hp;
+    private int fp;
+    private int lvl;
+    private final int maxhp;
+    private final int maxfp;
     public HashMap<Items, Integer> armamento = new HashMap<>();
 
     /**
