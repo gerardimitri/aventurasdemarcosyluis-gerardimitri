@@ -1,9 +1,15 @@
 package com.example.aventurasdemarcoyluis.Players;
 
 import com.example.aventurasdemarcoyluis.Enemies.Enemies;
-import com.example.aventurasdemarcoyluis.Enemies.EnemyType;
 
-public class Luis extends Players{
+/**
+ * Class that represent a Player in the game
+ *
+ *  @author Gerardo Trincado
+ *  github: gerardimitri
+ */
+
+public class Luis extends AbstractPlayers{
     /**
      * Creates a new player
      *
@@ -27,33 +33,10 @@ public class Luis extends Players{
      eso se deben utilizar tecnicas que se verán más adelante en el curso*/
     @Override
     public void attackEnemy(Enemies anEnemy, AttackType anAttack){
-        double k = 0;
-        int random = (int) Math.floor(Math.random()*(4-1+1)+1);
-
         //Here we check if the Player can Attack
-        if (super.getFP() == 0 || checkKO()){
+        if (super.getFP() == 0 || checkKO() || anEnemy.checkKO()){
             return;
         }
-
-        if (anAttack == AttackType.SALTO){
-            k=1;
-            super.setFP(super.getFP()-1);
-            if(anEnemy.getType()== EnemyType.SPINY){
-                k=0;
-                setHP((int)(super.getMaxHP() * 0.95));
-            }
-        }
-        if (anAttack == AttackType.MARTILLO){
-            super.setFP(super.getFP()-2);
-            if (random != 4){
-                k=1.5;
-            }
-            if(anEnemy.getType()== EnemyType.BOO){
-                k=0;
-            }
-        }
-        double damage = k*super.getAtk()*((double) (super.getLvl() / anEnemy.getDef()));
-        int newHp = anEnemy.getHp() - (int) damage;
-        anEnemy.setHp(newHp);
+        anEnemy.AttackedByLuis(this, anAttack);
     }
 }

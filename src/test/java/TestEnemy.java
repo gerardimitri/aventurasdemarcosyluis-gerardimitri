@@ -1,6 +1,8 @@
 
+import com.example.aventurasdemarcoyluis.Enemies.Boo;
 import com.example.aventurasdemarcoyluis.Enemies.Enemies;
-import com.example.aventurasdemarcoyluis.Enemies.EnemyType;
+import com.example.aventurasdemarcoyluis.Enemies.Goomba;
+import com.example.aventurasdemarcoyluis.Enemies.Spiny;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,16 +16,13 @@ public class TestEnemy {
 
     @BeforeEach
     public void setUp() {
-        testGoomba= new Enemies(2,4,15,8, EnemyType.GOOMBA);
-        testBoo = new Enemies(5,9,3,8, EnemyType.BOO);
-        testSpiny = new Enemies(4,10,6,8, EnemyType.SPINY);
+        testGoomba= new Goomba(2,4,15,8);
+        testBoo = new Boo(5,9,3,8);
+        testSpiny = new Spiny(4,10,6,8);
     }
 
     @Test
     public void constructorTest(){
-        assertEquals(EnemyType.BOO,testBoo.getType());
-        assertEquals(EnemyType.GOOMBA,testGoomba.getType());
-        assertEquals(EnemyType.SPINY,testSpiny.getType());
         assertNotEquals(testBoo, testGoomba);
     }
 
