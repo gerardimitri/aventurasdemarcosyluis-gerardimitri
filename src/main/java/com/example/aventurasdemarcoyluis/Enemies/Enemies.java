@@ -1,126 +1,94 @@
 package com.example.aventurasdemarcoyluis.Enemies;
 
-public class Enemies {
-    private int atk;
-    private int def;
-    private int hp;
-    private int lvl;
-    private final int maxhp;
-    private final EnemyType type;
+import com.example.aventurasdemarcoyluis.Players.AttackType;
+import com.example.aventurasdemarcoyluis.Players.Luis;
+import com.example.aventurasdemarcoyluis.Players.Marco;
+import com.example.aventurasdemarcoyluis.Players.Players;
+
+/**
+ * Interface for the usage of Enemies
+ *
+ *  @author Gerardo Trincado
+ *  github: gerardimitri
+ */
+public interface Enemies {
+    /**
+     * Enemy is Attacked by a Marco Player.
+     * @param marco refers to marco.
+     * @param anAttack refers to the type of the attack.
+     */
+    void AttackedByMarco(Marco marco, AttackType anAttack);
 
     /**
-     * Creates a new Enemy
-     * @param ATK attack points
-     * @param DEF defense points
-     * @param HP  heal points
-     * @param LVL level of the Unit
-     *
+     * Enemy is Attacked by a Luis Player.
+     * @param luis refers to luis.
+     * @param anAttack refers to the type of the attack.
      */
-    public Enemies(int ATK, int DEF, int HP, int LVL, EnemyType t ){
-        atk=ATK;
-        def=DEF;
-        hp=HP;
-        lvl=LVL;
-        type=t;
-        maxhp=HP;
-    }
+    void AttackedByLuis(Luis luis, AttackType anAttack);
 
     /**
-     * Gets the atk.
-     * @return the atk.
+     * Attacks a Player
+     * @param aPlayer represents the player attacked
      */
-    public int getAtk() {
-        return atk;
-    }
+    void attackPlayer(Players aPlayer);
 
     /**
-     * Sets the atk.
-     * @param atk represents the new atk.
+     * Checks if the enemy is KO'd
+     * @return True if enemy is KO'd
      */
-    public void setAtk(int atk) {
-        this.atk = atk;
-    }
+    boolean checkKO();
 
     /**
      * Gets the Def.
      * @return the def.
      */
-    public int getDef() {
-        return def;
-    }
-
-    /**
-     * Sets the def.
-     * @param def represents the new def.
-     */
-    public void setDef(int def) {
-        this.def = def;
-    }
+    int getDef();
 
     /**
      * Gets the HP.
      * @return the hp.
      */
-    public int getHp() {
-        return hp;
-    }
+    int getHp();
 
     /**
-     * Gets the maxHP.
-     * @return the maxHP.
+     * Gets the atk.
+     * @return the atk.
      */
-    public int getMaxHP(){
-        return this.maxhp;
-    }
-
-    /**
-     * Sets the HP.
-     * @param value represents the new HP.
-     */
-    public void setHp(int value) {
-        if( value < 0) {
-            this.hp=0;
-        }
-        else this.hp = Math.min(value, this.maxhp);
-    }
+    int getAtk();
 
     /**
      * getLvl.
      * @return the lvl.
      */
-    public int getLvl() {
-        return lvl;
-    }
+    int getLvl();
+
+    /**
+     * Gets the maxHP.
+     * @return the maxHP.
+     */
+    int getMaxHP();
+
+    /**
+     * Sets the atk.
+     * @param atk represents the new atk.
+     */
+    void setAtk(int atk);
+
+    /**
+     * Sets the def.
+     * @param def represents the new defense.
+     */
+    void setDef(int def);
 
     /**
      * Sets the lvl.
      * @param lvl represents the new lvl.
      */
-    public void setLvl(int lvl) {
-        this.lvl = lvl;
-    }
+    void setLvl(int lvl);
 
     /**
-     * Gets the type of enemy.
-     * @return the type.
+     * Sets the HP.
+     * @param value represents the new HP.
      */
-    public EnemyType getType() {
-        return type;
-    }
-
-    /**
-     * Boolean thats serves to compare if enemies are the same.
-     * @param o represents an Object to compare.
-     * @return boolean true if they are the same, false if not.
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Enemies enemies)) {
-            return false;
-        }
-        return atk == enemies.atk && def == enemies.def && hp == enemies.hp && lvl == enemies.lvl;
-    }
-
-
+    void setHp(int value);
 }

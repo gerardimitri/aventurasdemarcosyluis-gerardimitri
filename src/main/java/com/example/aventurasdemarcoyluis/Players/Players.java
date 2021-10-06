@@ -3,184 +3,105 @@ package com.example.aventurasdemarcoyluis.Players;
 import com.example.aventurasdemarcoyluis.Enemies.Enemies;
 import com.example.aventurasdemarcoyluis.Items.Items;
 
-import java.util.HashMap;
-
 /**
- * Class that represent a Player in the game
- *
- *  @author Gerardo Trincado
- *  github: gerardimitri
+ * Interface for the usage of different Players
  */
-public class Players {
-    private int atk;
-    private int def;
-    private int hp;
-    private int fp;
-    private int lvl;
-    private final int maxhp;
-    private final int maxfp;
-    public HashMap<Items, Integer> armamento = new HashMap<>();
-
-    /**
-     * Creates a new player
-     * @param ATK attack points
-     * @param DEF defense points
-     * @param HP  heal points
-     * @param FP  fight points
-     * @param LVL level of the Unit
-     *
-     */
-    public Players(int ATK, int DEF, int HP, int FP, int LVL ){
-        atk=ATK;
-        def=DEF;
-        hp=HP;
-        fp=FP;
-        lvl=LVL;
-        maxhp=HP;
-        maxfp=FP;
-
-    }
-
+public interface Players {
     /**
      * Adds an item to the armament bag
      * @param a represents the item
      * @param b represents the quantity
      */
-    public void addItem(Items a, int b){
-            if (armamento.containsKey(a)) {
-                armamento.replace(a, armamento.get(a) + b);
-            } else {
-                armamento.put(a, b);
-            }
-    }
+    void addItem(Items a, int b);
 
     /**
      * Uses an Item that's in bag
      * @param anItem represents the item to use
      */
-    public void useItem(Items anItem){
-        if(armamento.containsKey(anItem) && armamento.get(anItem)>0){
-            anItem.useItem(this);
-            this.armamento.replace(anItem, armamento.get(anItem)-1);
-        }
-    }
+    void useItem(Items anItem);
 
     /**
      * Gets the HP
      * @return the HP
      */
-    public int getHP(){
-        return this.hp;
-    }
+    int getHP();
 
     /**
      * Gets the maxHP
      * @return the maxHP
      */
-    public int getMaxHP(){
-        return this.maxhp;
-    }
+    int getMaxHP();
 
     /**
      * Set the current HP to a value
      * @param value represents the HP to set
      */
-    public void setHP(int value) {
-        if( value < 0) {
-            this.hp=0;
-        }
-        else this.hp = Math.min(value, this.maxhp);
-    }
+    void setHP(int value);
 
     /**
      * Gets the FP
      * @return the FP
      */
-    public int getFP(){
-        return this.fp;
-    }
+    int getFP();
 
     /**
      * Gets the maxFP
      * @return the maxFP
      */
-    public int getMaxFP(){
-        return this.maxfp;
-    }
+    int getMaxFP();
 
     /**
      * Sets the FP
      * @param value represents the value to set the FP
      */
-    public void setFP(int value) {
-        if( value < 0) {
-            this.fp=0;
-        }
-        else this.fp = Math.min(value, this.maxfp);
-    }
+    void setFP(int value);
 
     /**
      * Gets the Atk
      * @return the Atk
      */
-    public int getAtk() {
-        return atk;
-    }
+    int getAtk();
 
     /**
      * Sets the atk
      * @param atk represents the new atk
      */
-    public void setAtk(int atk) {
-        this.atk = atk;
-    }
+    void setAtk(int atk);
 
     /**
      * Gets the defense
      * @return the defense
      */
-    public int getDef() {
-        return def;
-    }
+    int getDef();
 
     /**
      * Sets the Defense
      * @param def represents the new defense
      */
-    public void setDef(int def) {
-        this.def = def;
-    }
+    void setDef(int def);
 
     /**
      * gets the Lvl
      * @return the lvl.
      */
-    public int getLvl() {
-        return lvl;
-    }
+    int getLvl();
 
     /**
      * Sets the lvl.
      * @param lvl represents the new lvl.
      */
-    public void setLvl(int lvl) {
-        this.lvl = lvl;
-    }
+    void setLvl(int lvl);
 
     /**
      * Checks if the player is Knocked Out
      * @return boolean, true if the Player is KO'd, false if not
      */
-    public boolean checkKO(){
-        return this.hp == 0;
-    }
+    boolean checkKO();
 
     /**
      * Function to attack an enemy
      * @param anEnemy the enemy attacked
      * @param anAttack the attack used
      */
-    protected void attackEnemy(Enemies anEnemy, AttackType anAttack){
-    }
-
+    void attackEnemy(Enemies anEnemy, AttackType anAttack);
 }
