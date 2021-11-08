@@ -28,9 +28,6 @@ public class Marco extends AbstractPlayers{
      * @param anEnemy the enemy attacked
      * @param anAttack the attack used
      */
-
-    /*Nota: panxito me dijo que está mal usar tantos if, pero para tratar con
-     eso se deben utilizar tecnicas que se verán más adelante en el curso*/
     @Override
     public void attackEnemy(Enemies anEnemy, AttackType anAttack){
         //Here we check if the Player can Attack

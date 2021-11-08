@@ -1,9 +1,9 @@
 package com.example.aventurasdemarcoyluis.Players;
 
 import com.example.aventurasdemarcoyluis.Enemies.Enemies;
+import com.example.aventurasdemarcoyluis.Entity.Entity;
+import com.example.aventurasdemarcoyluis.Items.ItemVault;
 import com.example.aventurasdemarcoyluis.Items.Items;
-
-import java.util.HashMap;
 
 /**
  * Class that represent an Abstract Player in the game
@@ -11,15 +11,14 @@ import java.util.HashMap;
  *  @author Gerardo Trincado
  *  github: gerardimitri
  */
-public abstract class AbstractPlayers implements Players{
+public abstract class AbstractPlayers implements Players, Entity {
     private int atk;
     private int def;
     private int hp;
     private int fp;
     private int lvl;
-    private final int maxhp;
-    private final int maxfp;
-    public HashMap<Items, Integer> armamento = new HashMap<>();
+    private int maxhp;
+    private int maxfp;
 
     /**
      * Creates a new player
@@ -38,31 +37,31 @@ public abstract class AbstractPlayers implements Players{
         lvl=LVL;
         maxhp=HP;
         maxfp=FP;
-
     }
 
     /**
      * Adds an item to the armament bag
-     * @param a represents the item
+     * @param anItem represents the item
      * @param b represents the quantity
      */
-    public void addItem(Items a, int b){
-            if (armamento.containsKey(a)) {
-                armamento.replace(a, armamento.get(a) + b);
-            } else {
-                armamento.put(a, b);
-            }
+    public void addItem(ItemVault aVault,Items anItem, int b){
+        aVault.addItem(anItem, b);
     }
 
     /**
      * Uses an Item that's in bag
      * @param anItem represents the item to use
      */
-    public void useItem(Items anItem){
-        if(armamento.containsKey(anItem) && armamento.get(anItem)>0){
-            anItem.useItem(this);
-            this.armamento.replace(anItem, armamento.get(anItem)-1);
-        }
+    public void useItem(ItemVault aVault, Items anItem){
+        aVault.useItem(anItem, this);
+    }
+
+    public boolean containsItem(ItemVault aVault, Items anItem){
+        return aVault.containsKey(anItem);
+    }
+
+    public int getItem(ItemVault aVault, Items anItem){
+        return aVault.getItemQuantity(anItem);
     }
 
     /**
@@ -93,6 +92,14 @@ public abstract class AbstractPlayers implements Players{
     }
 
     /**
+     * Set the current maxHP to a value
+     * @param value represents the maxHP to set
+     */
+    public void setmaxHP(int value) {
+        this.maxhp=value;
+    }
+
+    /**
      * Gets the FP
      * @return the FP
      */
@@ -117,6 +124,14 @@ public abstract class AbstractPlayers implements Players{
             this.fp=0;
         }
         else this.fp = Math.min(value, this.maxfp);
+    }
+
+    /**
+     * Sets the maxFP
+     * @param value represents the value to set the maxFP
+     */
+    public void setmaxFP(int value) {
+        this.maxfp=value;
     }
 
     /**
@@ -164,6 +179,16 @@ public abstract class AbstractPlayers implements Players{
      * @param lvl represents the new lvl.
      */
     public void setLvl(int lvl) {
+        int current=getLvl();
+        for(int i=current; i<lvl; i++){
+            setmaxHP((int)(getMaxHP()*1.15));
+            setHP((int)(getHP()*1.15));
+            setmaxFP((int) (getMaxFP()*1.15));
+            setFP((int) (getFP()*1.15));
+            setAtk((int)(getAtk()*1.15));
+            setDef((int)(getDef()*1.15));
+
+        }
         this.lvl = lvl;
     }
 

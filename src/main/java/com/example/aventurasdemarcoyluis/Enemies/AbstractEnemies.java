@@ -1,5 +1,6 @@
 package com.example.aventurasdemarcoyluis.Enemies;
 
+import com.example.aventurasdemarcoyluis.Entity.Entity;
 import com.example.aventurasdemarcoyluis.Players.Players;
 
 /**
@@ -8,7 +9,7 @@ import com.example.aventurasdemarcoyluis.Players.Players;
  *  @author Gerardo Trincado
  *  github: gerardimitri
  */
-public abstract class AbstractEnemies implements Enemies{
+public abstract class AbstractEnemies implements Enemies, Entity {
     private int atk;
     private int def;
     private int hp;
