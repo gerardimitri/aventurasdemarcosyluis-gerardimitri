@@ -1,5 +1,6 @@
 package com.example.aventurasdemarcoyluis.Enemies;
 
+import com.example.aventurasdemarcoyluis.Entity.Entity;
 import com.example.aventurasdemarcoyluis.Players.AttackType;
 import com.example.aventurasdemarcoyluis.Players.Luis;
 import com.example.aventurasdemarcoyluis.Players.Marco;
@@ -11,7 +12,7 @@ import com.example.aventurasdemarcoyluis.Players.Players;
  *  @author Gerardo Trincado
  *  github: gerardimitri
  */
-public interface Enemies {
+public interface Enemies extends Entity {
     /**
      * Enemy is Attacked by a Marco Player.
      * @param marco refers to marco.

@@ -12,7 +12,10 @@ public class TestItems {
 
     private ItemRedMushroom testRedMushroom;
     private ItemHoneySyrup testHoneySyrup;
-    private ItemStar testStar = new ItemStar();
+    private ItemStar testStar;
+    private ItemVault testVault;
+
+
 
     @BeforeEach
     public void setUp(){
@@ -23,6 +26,7 @@ public class TestItems {
         testStar = new ItemStar();
         testHoneySyrup = new ItemHoneySyrup();
         testRedMushroom = new ItemRedMushroom();
+        testVault = new ItemVault();
     }
 
     @Test
@@ -33,38 +37,38 @@ public class TestItems {
     @Test
     public void addItemTest(){
 
-        testMarco.addItem(testStar, 1);
-        assertTrue(testMarco.armamento.containsKey(testStar));
+        testMarco.addItem(testVault, testStar, 1);
+        assertTrue(testMarco.containsItem(testVault, testStar));
 
-        testMarco.addItem(testHoneySyrup, 2);
-        assertTrue(testMarco.armamento.containsKey(testHoneySyrup));
+        testMarco.addItem(testVault, testHoneySyrup, 2);
+        assertTrue(testMarco.containsItem(testVault, testHoneySyrup));
 
-        testMarco.addItem(testRedMushroom, 3);
-        assertTrue(testMarco.armamento.containsKey(testRedMushroom));
+        testMarco.addItem(testVault, testRedMushroom, 3);
+        assertTrue(testMarco.containsItem(testVault, testRedMushroom));
 
     }
 
     @Test
     public void useItemTest(){
-        testMarco.addItem(testStar, 1);
-        testMarco.addItem(testHoneySyrup, 2);
-        testMarco.addItem(testRedMushroom, 3);
+        testMarco.addItem(testVault, testStar, 1);
+        testMarco.addItem(testVault, testHoneySyrup, 2);
+        testMarco.addItem(testVault, testRedMushroom, 3);
 
-        testMarco.useItem(testStar);
-        assertEquals(0,testMarco.armamento.get(testStar));
+        testMarco.useItem(testVault, testStar);
+        assertEquals(0,testMarco.getItem(testVault, testStar));
 
-        testMarco.useItem(testHoneySyrup);
-        assertEquals(1,testMarco.armamento.get(testHoneySyrup));
+        testMarco.useItem(testVault, testHoneySyrup);
+        assertEquals(1,testMarco.getItem(testVault, testHoneySyrup));
         assertEquals(13, testMarco.getFP());
-        testMarco.useItem(testHoneySyrup);
+        testMarco.useItem(testVault, testHoneySyrup);
         assertEquals(15, testMarco.getFP());
 
-        testMarco.useItem(testRedMushroom);
-        assertEquals(2,testMarco.armamento.get(testRedMushroom));
+        testMarco.useItem(testVault, testRedMushroom);
+        assertEquals(2,testMarco.getItem(testVault, testRedMushroom));
         assertEquals(95, testMarco.getHP());
-        testMarco.useItem(testRedMushroom);
+        testMarco.useItem(testVault, testRedMushroom);
         assertEquals(100, testMarco.getHP());
-        testMarco.useItem(testRedMushroom);
+        testMarco.useItem(testVault, testRedMushroom);
         assertEquals(100, testMarco.getHP());
 
 

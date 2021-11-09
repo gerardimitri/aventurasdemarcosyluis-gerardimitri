@@ -1,25 +1,31 @@
 package com.example.aventurasdemarcoyluis.Players;
 
 import com.example.aventurasdemarcoyluis.Enemies.Enemies;
+import com.example.aventurasdemarcoyluis.Entity.Entity;
+import com.example.aventurasdemarcoyluis.Items.ItemVault;
 import com.example.aventurasdemarcoyluis.Items.Items;
 
 /**
  * Interface for the usage of different Players
  */
-public interface Players {
+public interface Players extends Entity {
     /**
      * Adds an item to the armament bag
-     * @param a represents the item
+     * @param aVault represents the ItemVault
+     * @param anItem represents the item
      * @param b represents the quantity
      */
-    void addItem(Items a, int b);
+    void addItem(ItemVault aVault, Items anItem, int b);
 
     /**
      * Uses an Item that's in bag
      * @param anItem represents the item to use
      */
-    void useItem(Items anItem);
+    void useItem(ItemVault aVault, Items anItem);
 
+    boolean containsItem(ItemVault aVault, Items anItem);
+
+    int getItem(ItemVault aVault, Items anItem);
     /**
      * Gets the HP
      * @return the HP
