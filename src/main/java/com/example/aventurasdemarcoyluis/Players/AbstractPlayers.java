@@ -2,6 +2,7 @@ package com.example.aventurasdemarcoyluis.Players;
 
 import com.example.aventurasdemarcoyluis.Enemies.Enemies;
 import com.example.aventurasdemarcoyluis.Entity.Entity;
+import com.example.aventurasdemarcoyluis.Exceptions.ItemNotFoundException;
 import com.example.aventurasdemarcoyluis.Items.ItemVault;
 import com.example.aventurasdemarcoyluis.Items.Items;
 
@@ -52,7 +53,7 @@ public abstract class AbstractPlayers implements Players, Entity {
      * Uses an Item that's in bag
      * @param anItem represents the item to use
      */
-    public void useItem(ItemVault aVault, Items anItem){
+    public void useItem(ItemVault aVault, Items anItem) throws ItemNotFoundException {
         aVault.useItem(anItem, this);
     }
 

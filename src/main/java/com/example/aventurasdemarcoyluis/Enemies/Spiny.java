@@ -56,4 +56,14 @@ public class Spiny extends AbstractEnemies{
         int newHp = this.getHp() - damage;
         this.setHp(newHp);
     }
+
+    /**
+     * Converts the object to String
+     * @return the String
+     */
+    @Override
+    public String toString(){
+        String str = "Spiny: " + getHp() +" HP";
+        return str;
+    }
 }

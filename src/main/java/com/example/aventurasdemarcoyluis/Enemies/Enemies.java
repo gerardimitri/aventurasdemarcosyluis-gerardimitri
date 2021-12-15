@@ -21,6 +21,12 @@ public interface Enemies extends Entity {
     void AttackedByMarco(Marco marco, AttackType anAttack);
 
     /**
+     * Converts the enemy to a String
+     * @return the String
+     */
+    String toString();
+
+    /**
      * Enemy is Attacked by a Luis Player.
      * @param luis refers to luis.
      * @param anAttack refers to the type of the attack.

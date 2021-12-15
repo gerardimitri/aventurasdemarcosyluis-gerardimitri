@@ -54,4 +54,12 @@ public class TestEnemy {
         assertEquals(0,testBoo.getHp());
     }
 
+    @Test
+    public void StringTest(){
+        assertTrue(testGoomba.toString() instanceof String);
+        assertTrue(testBoo.toString() instanceof String);
+        assertTrue(testSpiny.toString() instanceof String);
+
+    }
+
 }

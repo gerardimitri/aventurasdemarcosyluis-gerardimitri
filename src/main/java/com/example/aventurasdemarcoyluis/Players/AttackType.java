@@ -13,9 +13,9 @@ public enum AttackType {
 
     public int Attack(Players aPlayer, AttackType anAttack, Enemies anEnemy) {
         double k = 0;
-        int random = (int) Math.floor(Math.random()*(4-1+1)+1);
         switch (anAttack) {
             case MARTILLO -> {
+                int random = (int) Math.floor(Math.random()*(4-1+1)+1);
                 aPlayer.setFP(aPlayer.getFP() - 2);
                 if (random != 4) {
                     k = 1.5;

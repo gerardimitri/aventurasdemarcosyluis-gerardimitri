@@ -1,9 +1,9 @@
-
+import com.example.aventurasdemarcoyluis.Exceptions.ItemNotFoundException;
 import com.example.aventurasdemarcoyluis.Items.*;
 import com.example.aventurasdemarcoyluis.Players.Marco;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -49,13 +49,15 @@ public class TestItems {
     }
 
     @Test
-    public void useItemTest(){
+    public void useItemTest() throws ItemNotFoundException {
+
         testMarco.addItem(testVault, testStar, 1);
         testMarco.addItem(testVault, testHoneySyrup, 2);
         testMarco.addItem(testVault, testRedMushroom, 3);
 
         testMarco.useItem(testVault, testStar);
         assertEquals(0,testMarco.getItem(testVault, testStar));
+
 
         testMarco.useItem(testVault, testHoneySyrup);
         assertEquals(1,testMarco.getItem(testVault, testHoneySyrup));
@@ -71,6 +73,13 @@ public class TestItems {
         testMarco.useItem(testVault, testRedMushroom);
         assertEquals(100, testMarco.getHP());
 
+    }
 
+    @Test
+    public void ExceptionTest(){
+        ItemNotFoundException error = assertThrows(ItemNotFoundException.class, () -> {
+            testVault.useItem(testStar, testMarco);});
+
+        Assertions.assertEquals("Item not found in the vault", error.getMessage());
     }
 }

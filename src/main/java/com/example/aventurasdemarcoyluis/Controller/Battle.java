@@ -5,12 +5,18 @@ import com.example.aventurasdemarcoyluis.Enemies.Enemies;
 import com.example.aventurasdemarcoyluis.Enemies.Goomba;
 import com.example.aventurasdemarcoyluis.Enemies.Spiny;
 import com.example.aventurasdemarcoyluis.Entity.Entity;
+import com.example.aventurasdemarcoyluis.Exceptions.InvalidInputException;
+import com.example.aventurasdemarcoyluis.Exceptions.ItemNotFoundException;
 import com.example.aventurasdemarcoyluis.Items.*;
+import com.example.aventurasdemarcoyluis.Players.AttackType;
 import com.example.aventurasdemarcoyluis.Players.Luis;
 import com.example.aventurasdemarcoyluis.Players.Marco;
 import com.example.aventurasdemarcoyluis.Players.Players;
+import com.example.aventurasdemarcoyluis.View.View;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
@@ -30,9 +36,13 @@ public class Battle extends AbstractGame {
     private static final ItemRedMushroom REDMUSHROOM = new ItemRedMushroom();
 
     private int enemynumber;
-    private final ArrayList<Enemies> enemies = new ArrayList<>();
+    private ArrayList<Enemies> enemies = new ArrayList<>();
 
     private final ItemVault Vault = new ItemVault();
+
+    private final View View = new View();
+
+    private Game game = new Game();
 
     /**
      * Constructor
@@ -69,9 +79,9 @@ public class Battle extends AbstractGame {
      */
     public void putEnemynumber(Players aPlayer) {
         int lvl = aPlayer.getLvl();
-        if (lvl == 1 || lvl == 2) {
+        if (lvl >= 1 && lvl <= 2) {
             enemynumber = 3;
-        } else if (lvl == 3 || lvl == 4) {
+        } else if (lvl >= 3 && lvl <= 4) {
             enemynumber = 5;
         } else {
             enemynumber = 3;
@@ -111,6 +121,7 @@ public class Battle extends AbstractGame {
         else{
             Enemies anEnemy = getEnemyTurn(turn-2);
             if(anEnemy.checkKO()){
+                enemies.remove(anEnemy);
                 swapTurn();
             }
         }
@@ -124,8 +135,20 @@ public class Battle extends AbstractGame {
         return enemynumber;
     }
 
+    /**
+     * Gets the turn int
+     * @return the current turn
+     */
     public int getTurnid(){
         return turn;
+    }
+
+    /**
+     * Gets the game class with the status
+     * @return the game
+     */
+    public Game getGame() {
+        return game;
     }
 
     /**
@@ -153,6 +176,14 @@ public class Battle extends AbstractGame {
         else{
             return getEnemyTurn(turn2-2);
         }
+    }
+
+    /**
+     * Gets the list of enemies
+     * @return the enemies
+     */
+    public ArrayList<Enemies> getEnemies(){
+        return enemies;
     }
 
     /**
@@ -190,6 +221,8 @@ public class Battle extends AbstractGame {
             }
         }
     }
+
+
 
     /**
      * Gets the number of enemies through array size
@@ -270,60 +303,25 @@ public class Battle extends AbstractGame {
     }
 
     /**
-     * Allows player to choose an action, this wont be implemented as of today
-     * @param anAction represents the chosen action
-     * @throws IOException
-     *//*
-    public void SelectAction(Actions anAction) throws IOException {
-        anAction.Action(this, anAction);
-    }
-
-    *//**
      * What happens when an ATTACK is chosen as an action
-     * @param reader represents the input reader
-     * @throws IOException
-     *//*
-    public void ActionAttack(BufferedReader reader) throws IOException {
-        try {
-            System.out.println("¿A que enmigo desea atacar? indique numero");
-            String input = reader.readLine();
-
-            this.swapTurn();
-        }
-        catch (IOException e) {
-        }
+     */
+    public void ActionAttack() throws InvalidInputException, IOException {
+        View.ActionAttack( this);
     }
 
-    *//**
+    /**
      * What happens when an ITEM is chosen as an action
-     * @param reader represents the input reader
-     * @throws IOException
-     *//*
-    public void ActionItem(BufferedReader reader) throws IOException {
-        try {
-            System.out.println("¿Qué item desea usar?(STAR, REDMUSHROOM, HONEYSYRUP)");
-            String input = reader.readLine();
-
-            if (input == "STAR") {
-                players[turn].useItem(Vault, STAR);
-            } else if (input == "REDMUSHROOM") {
-                players[turn].useItem(Vault, REDMUSHROOM);
-            } else if (input == "HONEYSYRUP") {
-                players[turn].useItem(Vault, HONEYSYRUP);
-            } else {
-            }
-            this.swapTurn();
-        }
-        catch (IOException e) {
-        }
+     */
+    public void ActionItem() throws InvalidInputException, IOException, ItemNotFoundException {
+        View.ActionItem(this);
     }
 
-    *//**
+    /**
      * PASS the turn
-     *//*
+     */
     public void ActionPass(){
         this.swapTurn();
-    }*/
+    }
 
     /**
      * Checks if the game is over
@@ -337,6 +335,60 @@ public class Battle extends AbstractGame {
             }
         }
 
+        if(checkWin()){
+            game.setWincount(game.getWincount()+1);
+        }
+
+        if(count2==2){
+            game.setWincount(0);
+        }
+
         return !(checkWin() || (count2 == 2));
     }
+
+    /**
+     * The current character uses a STAR
+     */
+    public void UseItemStar() throws ItemNotFoundException {
+        getPlayerTurn(getTurnid()).useItem(Vault, STAR);
+    }
+
+    /**
+     * The current character uses a REDMUSHROOM
+     */
+    public void UseItemRedMushroom() throws ItemNotFoundException {
+        getPlayerTurn(getTurnid()).useItem(Vault, REDMUSHROOM);
+    }
+
+    /**
+     * The current character uses a HONEYSYRUP
+     */
+    public void UseItemHoneySyrup() throws ItemNotFoundException {
+        getPlayerTurn(getTurnid()).useItem(Vault, HONEYSYRUP);
+    }
+
+    /**
+     * The current character attack a certain enemy with Salto
+     * @param enemy_i the enemy id
+     */
+    public void AttackSalto(int enemy_i){
+        getPlayerTurn(turn).attackEnemy(enemies.get(enemy_i), AttackType.SALTO);
+    }
+
+    /**
+     * The current character attacks a certain enemy with Martillo
+     * @param enemy_i the enemy id
+     */
+    public void AttackMartillo(int enemy_i){
+        getPlayerTurn(turn).attackEnemy(enemies.get(enemy_i), AttackType.MARTILLO);
+    }
+
+    /**
+     * Gets the view
+     * @return the View
+     */
+    public View getView(){
+        return View;
+    }
+
 }
