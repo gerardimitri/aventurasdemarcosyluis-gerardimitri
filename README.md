@@ -45,7 +45,7 @@ Para acceder a los elementos de los enemigos se utilizan los mismos metodos que 
 
 Se actualizan los metodos de Ataque, además las funciones y los test se mantienen, sin embargo utilizamos un pozo común para los items.
 
-##Controlador
+## Controlador
 
 Para el caso del controlador, realizamos una clase "Battle" con metodos determinados para hacer de controlador, la cual en el constructor iniciliaza y crea tanto a los personajes como a los enemigos acorde al número deseado.
 
@@ -53,8 +53,15 @@ En cuanto a los turnos, dejamos los turnos expresados como ints con el formato d
 
 Se implementan las funciones checkWin() y notOver() para verificar si es que el personaje ganó, o bien terminó el duelo respectivamente.
 
-Nota:
-Clase GameDriver y Actions tienen funciones que serán utilizadas en la Tarea 3, asímismo la clase Battle.
+## Vista
+
+Se implementó una vista para el controlador Battle, la cual utiliza los metodos SelectAction() para pedirle inputs al usuario, así mismo utiliza SelectItem() y SelectAttack() para las interacciones de Items y Ataques respectivamente.
+
+Se implementan excepciones en la Vista, para cuando la opcion solicitada no existe, así mismo para cuando un item no está en el Baúl.
+
+Las anteriores funciones se comunican con el controlador Battle para interactuar con el modelo.
+
+Para el testeo, se utiliza NullOutputStream para no imprimir.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
