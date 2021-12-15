@@ -57,10 +57,22 @@ public abstract class AbstractPlayers implements Players, Entity {
         aVault.useItem(anItem, this);
     }
 
+    /**
+     * Checks if an Item is in the Vault.
+     * @param aVault represents the vault.
+     * @param anItem represents the item.
+     * @return true if it contains the item.
+     */
     public boolean containsItem(ItemVault aVault, Items anItem){
         return aVault.containsKey(anItem);
     }
 
+    /**
+     * Gets an item quantity from the Vault
+     * @param aVault represents the Vault
+     * @param anItem represents the Item
+     * @return the quantity
+     */
     public int getItem(ItemVault aVault, Items anItem){
         return aVault.getItemQuantity(anItem);
     }

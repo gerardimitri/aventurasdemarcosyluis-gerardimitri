@@ -14,9 +14,7 @@ import com.example.aventurasdemarcoyluis.Players.Marco;
 import com.example.aventurasdemarcoyluis.Players.Players;
 import com.example.aventurasdemarcoyluis.View.View;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
