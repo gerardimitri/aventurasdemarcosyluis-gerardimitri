@@ -2,6 +2,7 @@ package com.example.aventurasdemarcoyluis.Players;
 
 import com.example.aventurasdemarcoyluis.Enemies.Enemies;
 import com.example.aventurasdemarcoyluis.Entity.Entity;
+import com.example.aventurasdemarcoyluis.Exceptions.ItemNotFoundException;
 import com.example.aventurasdemarcoyluis.Items.ItemVault;
 import com.example.aventurasdemarcoyluis.Items.Items;
 
@@ -21,7 +22,7 @@ public interface Players extends Entity {
      * Uses an Item that's in bag
      * @param anItem represents the item to use
      */
-    void useItem(ItemVault aVault, Items anItem);
+    void useItem(ItemVault aVault, Items anItem) throws ItemNotFoundException;
 
     boolean containsItem(ItemVault aVault, Items anItem);
 

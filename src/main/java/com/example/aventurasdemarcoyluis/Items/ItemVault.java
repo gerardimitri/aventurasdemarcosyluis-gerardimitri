@@ -1,5 +1,6 @@
 package com.example.aventurasdemarcoyluis.Items;
 
+import com.example.aventurasdemarcoyluis.Exceptions.ItemNotFoundException;
 import com.example.aventurasdemarcoyluis.Players.Players;
 
 import java.util.HashMap;
@@ -38,10 +39,13 @@ public class ItemVault {
      * @param anItem represents the item to use
      * @param aPlayer represents the players who uses the Item
      */
-    public void useItem(Items anItem, Players aPlayer){
+    public void useItem(Items anItem, Players aPlayer) throws ItemNotFoundException {
         if(armamento.containsKey(anItem) && armamento.get(anItem)>0){
             anItem.useItem(aPlayer);
             this.armamento.replace(anItem, armamento.get(anItem)-1);
+        }
+        else{
+            throw new ItemNotFoundException("Item not found in the vault");
         }
     }
 

@@ -3,10 +3,10 @@ import com.example.aventurasdemarcoyluis.Enemies.Boo;
 import com.example.aventurasdemarcoyluis.Enemies.Enemies;
 import com.example.aventurasdemarcoyluis.Enemies.Goomba;
 import com.example.aventurasdemarcoyluis.Enemies.Spiny;
+import com.example.aventurasdemarcoyluis.Items.ItemRedMushroom;
 import com.example.aventurasdemarcoyluis.Items.ItemVault;
 import com.example.aventurasdemarcoyluis.Players.Luis;
 import com.example.aventurasdemarcoyluis.Players.Marco;
-import com.example.aventurasdemarcoyluis.Players.Players;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,11 +14,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestBattle {
     private Battle testBattle;
+    ItemRedMushroom REDMUSHROOM;
 
 
     @BeforeEach
     public void setUp() {
         testBattle = new Battle();
+        REDMUSHROOM = new ItemRedMushroom();
     }
 
     @Test
@@ -48,6 +50,11 @@ public class TestBattle {
 
         assertTrue(testBattle.getPlayer(0) instanceof Marco);
         assertTrue(testBattle.getPlayer(1) instanceof Luis);
+
+        assertFalse(testBattle.getGame().checkWin());
+        testBattle.getGame().setWincount(2);
+        assertEquals(2,testBattle.getGame().getWincount());
     }
+
 }
 

@@ -46,4 +46,14 @@ public class Boo extends AbstractEnemies{
     public void AttackedByLuis(Luis luis, AttackType anAttack) {
     }
 
+    /**
+     * Converts the object to String
+     * @return the String
+     */
+    @Override
+    public String toString(){
+        String str = "Boo: " + getHp() +" HP";
+        return str;
+    }
+
 }
